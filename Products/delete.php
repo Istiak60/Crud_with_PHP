@@ -6,5 +6,13 @@ $query="DELETE FROM `product` WHERE `product`.`id` = :id";
 $stmt =$conn->prepare($query);
 $stmt->bindParam('id',$_id);
 $result =$stmt->execute();
-var_dump($result);
-header("location:index.php");
+if ($result){
+    $_SESSION['message'] = "Admin is deleted successfully";
+}else{
+    $_SESSION['message'] = "Admin is not deleted";
+}
+
+// this is for the location set to store.php to main home page index.php
+header("location:trash-index.php");
+
+?>

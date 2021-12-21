@@ -56,6 +56,16 @@
 
                         </div>
 
+                        <div class="mb-3 row form-check">
+                            <div class="col-md-9">
+                                <input type="checkbox" class="form-check-input" id="inputIsDeleted" name="is_deleted" value="1">
+                            </div>
+                            <label for="inputIsDeleted" class="col-md-3  form-check-label">
+
+                                Is Deleted:
+                            </label>
+
+                        </div>
 
 
 

@@ -14,7 +14,7 @@ $conn->setAttribute(
   PDO::ERRMODE_EXCEPTION
 );
 
-$query = "SELECT * FROM `product` where is_deleted =0";
+$query = "SELECT * FROM `product` where is_deleted =1";
 
 $stmt = $conn->prepare($query);
 
@@ -45,22 +45,22 @@ echo "</pre>";*/
   <section>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="fs-3 text-success">
             <?php
             echo $_SESSION['message'];
             $_SESSION['message'] = "";
             ?>
           </div>
-          <h1 class="text-center mb-4">Lists</h1>
+          <h1 class="text-center mb-4">All trashed Items</h1>
           <ul class="nav justify-content-center fs-3">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="create.php">
-                Add an item
+
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="trash-index.php">Trashed items list</a>
+              <a class="nav-link" href="index.php">List Items</a>
             </li>
           </ul>
           <table class="table">
@@ -82,14 +82,13 @@ echo "</pre>";*/
                     <!-- php echo = '=' same work-->
                     <td><?= $product['title'] ?></td>
                     <td><?= $product['is_active'] ? 'Activated' : 'Deactivated' ?></td>
-                    <td><a href="show.php?id=<?= $product['id']; ?>">Show</a>
-                      |
-                      <a href="edit.php?id=<?= $product['id']; ?>">Edit</a>
-                      |
-
-
-                        <a href="trash.php?id=<?= $product['id']; ?>" onclick="return confirm('Are you sure you want to trash?')">
-                            Trash
+                    <td>
+                      <a href="delete.php?id=<?= $product['id']; ?>" onclick="return confirm('Are you sure you want to delete?')">
+                        Delete
+                      </a>
+                        |
+                        <a href="restore.php?id=<?= $product['id']; ?>" onclick="return confirm('Are you sure you want to Restore?')">
+                            Restore
                         </a>
                     </td>
                   </tr>

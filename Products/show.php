@@ -56,6 +56,17 @@ $product = $stmt->fetch();
                         </dd>
                     </dl>
                     <dl class="row">
+                        <dt class="col-md-3">Is Deleted</dt>
+                        <dd class="col-md-9">
+                            <?php
+
+                            echo $product['is_deleted'] ? 'Deleted' : ' Not Deleted';
+                            ?>
+
+
+                        </dd>
+                    </dl>
+                    <dl class="row">
                         <dt class="col-md-3">Created At</dt>
                         <dd class="col-md-9"><?= $product['created_at']; ?></dd>
                     </dl>
@@ -66,6 +77,11 @@ $product = $stmt->fetch();
                     <dl class="row">
                         <dt class="col-md-3">Picture</dt>
                         <dd class="col-md-9"><img src="<?= $webroot; ?>uploads/<?= $product['picture']; ?>"></dd>
+                    </dl>
+                    <dl class="row">
+                        <dd class="col-md-9">Go to<a href="index.php">
+                              List Items
+                            </a></dd>
                     </dl>
                 </div>
             </div>

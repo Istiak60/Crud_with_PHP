@@ -23,16 +23,22 @@ if (array_key_exists('is_active', $_POST)) {
 } else {
     $_is_active = 0;
 }
+if (array_key_exists('is_deleted', $_POST)) {
+    $_is_deleted = $_POST['is_deleted'];
+} else {
+    $_is_deleted = 0;
+}
 $_modified_at = date('Y-m-d h:i:s', time());
 
 // echo $_title;
 $conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$query = "UPDATE `product`  SET `title`=:title,`picture`=:picture ,`is_active`=:is_active,`modified_at`=:modified_at WHERE `product`.`id` =:id;";
+$query = "UPDATE `product`  SET `title`=:title,`picture`=:picture ,`is_active`=:is_active,`modified_at`=:modified_at,`is_deleted`=:is_deleted WHERE `product`.`id` =:id;";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(':title', $_title);
 $stmt->bindParam(':id', $_id);
 $stmt->bindParam(':is_active', $_is_active);
+$stmt->bindParam(':is_deleted', $_is_deleted);
 $stmt->bindParam(':picture', $_picture);
 $stmt->bindParam(':modified_at', $_modified_at);
 $result = $stmt->execute();

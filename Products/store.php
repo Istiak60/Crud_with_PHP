@@ -19,16 +19,22 @@ if (array_key_exists('is_active', $_POST)) {
 } else {
     $_is_active = 0;
 }
+if (array_key_exists('is_deleted', $_POST)) {
+    $_is_deleted = $_POST['is_deleted'];
+} else {
+    $_is_deleted = 0;
+}
 
 $_created_at = date('Y-m-d h:i:s', time());
 
 $conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$query = "INSERT INTO `product` (`title`,`created_at`,`picture`,`is_active`) VALUES (:title,:created_at,:picture,:is_active);";
+$query = "INSERT INTO `product` (`title`,`created_at`,`picture`,`is_active`,`is_deleted`) VALUES (:title,:created_at,:picture,:is_active,:is_deleted);";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(':title', $_title);
 $stmt->bindParam(':picture', $_picture);
 $stmt->bindParam(':is_active', $_is_active);
+$stmt->bindParam(':is_deleted', $_is_deleted);
 $stmt->bindParam(':created_at', $_created_at);
 $result = $stmt->execute();
 if ($result) {
