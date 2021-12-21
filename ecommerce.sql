@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 20, 2021 at 11:22 PM
--- Server version: 5.7.33
--- PHP Version: 7.4.19
+-- Generation Time: Dec 21, 2021 at 12:40 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -185,22 +185,22 @@ CREATE TABLE `product` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '0',
-  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `title`, `created_at`, `picture`, `is_active`, `modified_at`) VALUES
-(23, 'Good name', '2021-12-20 09:49:47', 'blog-img1-913x500.jpg', 1, '2021-12-20 10:34:44'),
-(24, 'Succesfull done', '2021-12-20 09:49:47', 'product21-700x850.jpg', 0, '2021-12-20 10:10:27'),
-(25, 'PCCCC', '2021-12-20 09:49:47', 'IMG_product24-700x850.jpg', 0, '2021-12-20 10:10:27'),
-(26, 'oppppppppp', '2021-12-20 09:49:47', 'IMG_product23-700x850.jpg', 0, '2021-12-20 10:10:27'),
-(27, 'tarek', '2021-12-20 09:49:47', 'IMG_product4-700x850.jpg', 0, '2021-12-20 10:18:51'),
-(28, 'tarek ffffffff', '2021-12-20 09:49:47', 'IMG_product4-700x850.jpg', 1, '2021-12-20 10:15:42'),
-(30, 'Timestamp solved', '2021-12-20 10:04:12', 'IMG_menu-shoes.png', 1, '2021-12-20 10:10:27'),
-(31, 'final', '2021-12-20 10:37:51', 'IMG_product5-700x850.jpg', 1, '2021-12-20 10:37:51');
+INSERT INTO `product` (`id`, `title`, `created_at`, `picture`, `is_active`, `modified_at`, `is_deleted`) VALUES
+(23, 'Good name', '2021-12-20 09:49:47', 'blog-img1-913x500.jpg', 1, '2021-12-20 10:34:44', 1),
+(24, 'Succesfull done', '2021-12-20 09:49:47', 'product21-700x850.jpg', 0, '2021-12-20 10:10:27', 0),
+(25, 'PCCCC', '2021-12-20 09:49:47', 'IMG_product24-700x850.jpg', 0, '2021-12-20 10:10:27', 0),
+(26, 'oppppppppp', '2021-12-20 09:49:47', 'IMG_product23-700x850.jpg', 0, '2021-12-20 10:10:27', 0),
+(27, 'tarek', '2021-12-20 09:49:47', 'IMG_product4-700x850.jpg', 0, '2021-12-20 10:18:51', 0),
+(31, 'final', '2021-12-20 10:37:51', 'IMG_product5-700x850.jpg', 1, '2021-12-20 10:37:51', 0),
+(33, 'testing ', '2021-12-21 11:58:17', 'IMG_IMG_product4-700x850.jpg', 1, '2021-12-21 12:06:15', 1);
 
 --
 -- Indexes for dumped tables
@@ -292,7 +292,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
