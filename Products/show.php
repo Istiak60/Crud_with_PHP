@@ -1,14 +1,11 @@
 <?php
-$_id = $_GET['id'];
 $webroot = "http://localhost/CRUD/admin/";
-$conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$query = "SELECT * FROM `product` WHERE id = :id";
-$stmt = $conn->prepare($query);
-$stmt->bindParam('id', $_id);
 
-$result = $stmt->execute();
-$product = $stmt->fetch();
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Product;
+$_product = new Product();
+$product = $_product->show();
 
 
 
@@ -56,6 +53,17 @@ $product = $stmt->fetch();
                         </dd>
                     </dl>
                     <dl class="row">
+                        <dt class="col-md-3">Is Deleted</dt>
+                        <dd class="col-md-9">
+                            <?php
+
+                            echo $product['is_deleted'] ? 'Deleted' : ' Not Deleted';
+                            ?>
+
+
+                        </dd>
+                    </dl>
+                    <dl class="row">
                         <dt class="col-md-3">Created At</dt>
                         <dd class="col-md-9"><?= $product['created_at']; ?></dd>
                     </dl>
@@ -66,6 +74,11 @@ $product = $stmt->fetch();
                     <dl class="row">
                         <dt class="col-md-3">Picture</dt>
                         <dd class="col-md-9"><img src="<?= $webroot; ?>uploads/<?= $product['picture']; ?>"></dd>
+                    </dl>
+                    <dl class="row">
+                        <dd class="col-md-9">Go to<a href="index.php">
+                              List Items
+                            </a></dd>
                     </dl>
                 </div>
             </div>

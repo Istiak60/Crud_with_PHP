@@ -1,31 +1,10 @@
 <?php
 
-session_start();
-
-//Connect to database
-$conn = new PDO(
-    "mysql:host=localhost;dbname=ecommerce",
-    'root',
-    ''
-);
-//set the PDO error mode to exception
-$conn->setAttribute(
-    PDO::ATTR_ERRMODE,
-    PDO::ERRMODE_EXCEPTION
-);
-
-
-$query = "SELECT * FROM `cart`";
-
-$stmt = $conn->prepare($query);
-
-$result = $stmt->execute();
-
-$carts = $stmt->fetchAll();
-
-/*echo "<pre>";
-print_r($products);
-echo "</pre>";*/
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Cart;
+$_cart =new Cart();
+$carts = $_cart->index();
 ?>
 
 <!doctype html>

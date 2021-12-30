@@ -5,6 +5,6 @@ $approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
 include_once($approot."vendor/autoload.php");
 use  Bitm\Product;
 $_product = new Product();
-$product = $_product->store();
+$product = $_product->restore();
 
 ?>

@@ -1,10 +1,10 @@
 <?php
-$_id =$_GET['id'];
-$conn =new PDO("mysql:host=localhost;dbname=ecommerce",'root','');
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-$query="DELETE FROM `product` WHERE `product`.`id` = :id";
-$stmt =$conn->prepare($query);
-$stmt->bindParam('id',$_id);
-$result =$stmt->execute();
-var_dump($result);
-header("location:index.php");
+$webroot = "http://localhost/CRUD/admin/";
+
+
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Product;
+$_product = new Product();
+$_product->delete();
+?>

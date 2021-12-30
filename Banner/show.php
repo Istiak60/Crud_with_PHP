@@ -1,16 +1,11 @@
 <?php
-$_id = $_GET['id'];
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Banner;
+$_banner = new Banner();
+$banner= $_banner->show();
+
 $webroot = "http://localhost/CRUD/admin/";
-$conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$query = "SELECT * FROM `banner` WHERE id = :id";
-$stmt = $conn->prepare($query);
-$stmt->bindParam('id', $_id);
-
-$result = $stmt->execute();
-$banner = $stmt->fetch();
-
-
 
 
 

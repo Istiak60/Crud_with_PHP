@@ -1,31 +1,11 @@
 <?php
 
-session_start();
 
-//Connect to database
-$conn = new PDO(
-    "mysql:host=localhost;dbname=ecommerce",
-    'root',
-    ''
-);
-//set the PDO error mode to exception
-$conn->setAttribute(
-    PDO::ATTR_ERRMODE,
-    PDO::ERRMODE_EXCEPTION
-);
-
-
-$query = "SELECT * FROM `contact`";
-
-$stmt = $conn->prepare($query);
-
-$result = $stmt->execute();
-
-$contacts = $stmt->fetchAll();
-
-/*echo "<pre>";
-print_r($products);
-echo "</pre>";*/
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Contact;
+$_contact = new Contact();
+$contacts = $_contact->index();
 ?>
 
 <!doctype html>

@@ -1,14 +1,11 @@
 <?php
-session_start();
-$conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$query = "SELECT * FROM `banner`";
-$stmt = $conn->prepare($query);
-$result = $stmt->execute();
-$banners = $stmt->fetchAll();
-echo "<pre>";
-// print_r($products);
-echo "</pre>";
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Banner;
+$_banner =new Banner();
+$banners = $_banner->index();
+
+ 
 
 ?>
 <!DOCTYPE html>

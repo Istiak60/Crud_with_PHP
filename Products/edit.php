@@ -1,15 +1,12 @@
 <?php
-$_id = $_GET['id'];
 $webroot = "http://localhost/CRUD/admin/";
-$conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$query = "SELECT * FROM `product` WHERE id = :id";
-$stmt = $conn->prepare($query);
-$stmt->bindParam('id', $_id);
 
-$result = $stmt->execute();
-$product = $stmt->fetch();
 
+$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
+include_once($approot."vendor/autoload.php");
+use  Bitm\Product;
+$_product = new Product();
+$product = $_product->edit();
 
 
 
@@ -77,6 +74,34 @@ $product = $stmt->fetch();
                             <label for="inputIsActive" class="col-md-3  form-check-label">
 
                                 Is Active:
+                            </label>
+
+                        </div>
+
+                      <!--delete-->
+
+                        <div class="mb-3 row form-check">
+                            <div class="col-md-9">
+                                <?php
+
+                                if ($product['is_deleted'] == 0) {
+                                    ?>
+                                    <input type="checkbox" class="form-check-input" id="inputIsDeleted" name="is_deleted" value="1">
+
+                                    <?php
+                                } else {
+                                    ?>
+
+                                    <input type="checkbox" class="form-check-input" id="inputIsDeleted" name="is_deleted" value="1" checked>
+                                    <?php
+                                }
+
+                                ?>
+
+                            </div>
+                            <label for="inputIsActive" class="col-md-3  form-check-label">
+
+                                Is Deleted:
                             </label>
 
                         </div>
