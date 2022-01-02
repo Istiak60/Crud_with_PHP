@@ -1,28 +1,9 @@
 <?php
 
-$_id = $_GET['id'];
-
-//Connect to database
-$conn = new PDO(
-    "mysql:host=localhost;dbname=ecommerce",
-    'root',
-    ''
-);
-//set the PDO error mode to exception
-$conn->setAttribute(
-    PDO::ATTR_ERRMODE,
-    PDO::ERRMODE_EXCEPTION
-);
-
-$query = "SELECT * FROM `contact` WHERE id = :id";
-
-$stmt = $conn->prepare($query);
-
-$stmt->bindParam(':id', $_id);
-
-$result = $stmt->execute();
-
-$contact = $stmt->fetch();
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
+use  Bitm\Contact;
+$_contact = new Contact();
+$contact = $_contact->edit();
 
 
 ?>

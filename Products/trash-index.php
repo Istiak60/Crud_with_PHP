@@ -1,46 +1,15 @@
 <?php
 
-<<<<<<< HEAD
-=======
-session_start();
-
-//Connect to database
-$conn = new PDO(
-  "mysql:host=localhost;dbname=ecommerce",
-  'root',
-  ''
-);
-//set the PDO error mode to exception
-$conn->setAttribute(
-  PDO::ATTR_ERRMODE,
-  PDO::ERRMODE_EXCEPTION
-);
-
-$query = "SELECT * FROM `product` where is_deleted =1";
-
-$stmt = $conn->prepare($query);
-
-$result = $stmt->execute();
-
-$products = $stmt->fetchAll();
->>>>>>> aa39485a082eac71f09b1d83f54402e4563602d4
 
 //var_dump($products);
 
 /*echo "<pre>";
 print_r($products);
 echo "</pre>";*/
-<<<<<<< HEAD
-$webroot = "http://localhost/CRUD/admin/";
-
-$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
-include_once($approot."vendor/autoload.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 use  Bitm\Product;
 $_product = new Product();
 $products = $_product->trash_show();
-=======
-
->>>>>>> aa39485a082eac71f09b1d83f54402e4563602d4
 ?>
 
 <!doctype html>

@@ -1,7 +1,6 @@
 <?php
 
-$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
-include_once($approot."vendor/autoload.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 use  Bitm\Contact;
 $_contact = new Contact();
 $contact = $_contact->show();

@@ -1,9 +1,5 @@
 <?php
-$webroot = "http://localhost/CRUD/admin/";
-
-
-$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
-include_once($approot."vendor/autoload.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 use  Bitm\Product;
 $_product = new Product();
 $product = $_product->edit();

@@ -1,11 +1,10 @@
 <?php
-$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
-include_once($approot."vendor/autoload.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 use  Bitm\Banner;
 $_banner = new Banner();
 $banner= $_banner->show();
 
-$webroot = "http://localhost/CRUD/admin/";
+
 
 
 
