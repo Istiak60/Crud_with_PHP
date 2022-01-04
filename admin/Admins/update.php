@@ -1,46 +1,7 @@
 <?php
-/*echo "<pre>";
-var_dump($_POST);
-echo "</pre>";*/
-session_start();
+  include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
+  use  Bitm\Admin;
+  $_admin = new Admin();
+  $admin = $_admin->update();
 
-$_id = $_POST['id'];
-$_name = $_POST['name'];
-$_email = $_POST['email'];
-$_phone = $_POST['phone'];
-$_password = $_POST['password'];
-//echo $_name;
-
-//Connect to database
-$conn = new PDO("mysql:host=localhost;dbname=ecommerce",
-    'root', '');
-//set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE,
-    PDO::ERRMODE_EXCEPTION);
-$query = "UPDATE `admin` SET `name` = :name, 
-                               `email` = :email, 
-                               `password` = :password,
-                               `phone` = :phone
-
-          WHERE `admin`.`id` = :id";
-
-$stmt = $conn->prepare($query);
-
-$stmt->bindParam(':id', $_id);
-$stmt->bindParam(':name', $_name);
-$stmt->bindParam(':email', $_email);
-$stmt->bindParam(':password', $_password);
-$stmt->bindParam(':phone', $_phone);
-
-$result = $stmt->execute();
-
-//var_dump($result);
-
-if ($result){
-    $_SESSION['message'] = "Admin is updated successfully";
-}else{
-    $_SESSION['message'] = "Admin is not updated";
-}
-
-// this is for the location set to store.php to main home page index.php
-header("location:index.php");
+?>

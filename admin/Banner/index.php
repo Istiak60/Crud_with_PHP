@@ -1,9 +1,9 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 
 use  Bitm\Banner;
 $_banner =new Banner();
 $banners = $_banner->index();
+
 
  
 
@@ -27,7 +27,7 @@ $banners = $_banner->index();
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <div class="fs-3 text-success">
+                    <div class="fs-4 text-success">
                         <?php
                         echo $_SESSION['message'];
                         $_SESSION['message'] = "";

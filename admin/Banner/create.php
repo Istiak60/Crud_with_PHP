@@ -26,7 +26,15 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
+                <div class="fs-4 text-danger">
+                        <?php
+                        session_start();
+                        echo $_SESSION['message'];
+                        $_SESSION['message'] = "";
+                        ?>
+                    </div>
                     <h1 class="text-center mb-4"> Add New Banner </h1>
+
                     <form method="post" action="store.php" enctype="multipart/form-data">
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">

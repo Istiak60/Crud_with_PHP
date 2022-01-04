@@ -3,8 +3,9 @@
 include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 
 use  Bitm\Banner;
+$_id = $_GET['id'];
 $_banner = new Banner();
-$banner = $_banner->edit();
+$banner = $_banner->edit($_id);
 
 
 
@@ -30,6 +31,12 @@ $banner = $_banner->edit();
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
+                <div class="fs-4 text-danger">
+                        <?php
+                        echo $_SESSION['message'];
+                        $_SESSION['message'] = "";
+                        ?>
+                    </div>
                     <h1 class="text-center mb-4"> Edit something </h1>
                     <form method="post" action="update.php" enctype="multipart/form-data">
                         <div class="mb-3 row">

@@ -25,35 +25,35 @@ class Banner{
 
 	}
 
-	public function show()
+	public function show($id)
 	{
 
-		$_id = $_GET['id'];
+		
 		$webroot = "http://localhost/CRUD/admin/";
 	
 		$query = "SELECT * FROM `banner` WHERE id = :id";
 		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam('id', $_id);
+		$stmt->bindParam('id', $id);
 
 		$result = $stmt->execute();
 		$banners = $stmt->fetch();
 		return $banners;
 	}
 
-	public function store()
+	public function store($data)
 	{
 			$_picture=$this->upload();
-			$_title = $_POST['title'];
-			$_link = $_POST['link'];
-			$_html_banner = $_POST['html_banner'];
-			$_promotional_message = $_POST['promotional_message'];
-			if (array_key_exists('is_active', $_POST)) {
-			    $_is_active = $_POST['is_active'];
+			$_title = $data['title'];
+			$_link = $data['link'];
+			$_html_banner = $_data['html_banner'];
+			$_promotional_message = $_data['promotional_message'];
+			if (array_key_exists('is_active', $data)) {
+			    $_is_active = $data['is_active'];
 			} else {
 			    $_is_active = 0;
 			}
-			if (array_key_exists('is_draft', $_POST)) {
-			    $_is_draft = $_POST['is_draft'];
+			if (array_key_exists('is_draft', $data)) {
+			    $_is_draft = $data['is_draft'];
 			} else {
 			    $_is_draft = 0;
 			}
@@ -83,33 +83,33 @@ class Banner{
 			return $result;
 
 	}
-	public function edit()
+	public function edit($id)
 	{
-			$_id = $_GET['id'];
+			
 			$query = "SELECT * FROM `banner` WHERE id = :id";
 			$stmt = $this->conn->prepare($query);
-			$stmt->bindParam('id', $_id);
-
+			$stmt->bindParam('id', $id);
 			$result = $stmt->execute();
 			$banner = $stmt->fetch();
 			return $banner;
 	}
-	public function update()
+	public function update($data)
 	{
 			$_picture=$this->upload();
-			$_id = $_POST['id'];
-			$_title = $_POST['title'];
-			$_link = $_POST['link'];
-			$_html_banner = $_POST['html_banner'];
-			$_promotional_message = $_POST['promotional_message'];
-			if (array_key_exists('is_active', $_POST)) {
-				$_is_active = $_POST['is_active'];
+			$_id = $data['id'];
+			$_title = $data['title'];
+			$_link = $data['link'];
+			$_html_banner = $data['html_banner'];
+			$_promotional_message = $data['promotional_message'];
+
+			if (array_key_exists('is_active', $data)) {
+				$_is_active = $data['is_active'];
 			} else {
 				$_is_active = 0;
 			}
 			
-			if (array_key_exists('is_draft', $_POST)) {
-				$_is_draft = $_POST['is_draft'];
+			if (array_key_exists('is_draft', $data)) {
+				$_is_draft = $data['is_draft'];
 			} else {
 				$_is_draft = 0;
 			}
@@ -135,13 +135,13 @@ class Banner{
 			return $result;
 		
 	}
-	public function delete()
+	public function delete($id)
 	{
-		$_id =$_GET['id'];
+	
 		
 		$query="DELETE FROM `banner` WHERE `banner`.`id` = :id";
 		$stmt =$this->conn->prepare($query);
-		$stmt->bindParam('id',$_id);
+		$stmt->bindParam('id',$id);
 		$result =$stmt->execute();
 		var_dump($result);
 		header("location:index.php");
