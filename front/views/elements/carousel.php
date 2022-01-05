@@ -1,9 +1,9 @@
 <?php
 use  Bitm\Banner;
 $_banner =new Banner();
-$banners = $_banner->index();
+$banners = $_banner->getActiveBanners();
 
-var_dump($banners);
+// var_dump($banners);
 ?>
 
 <!--Markup for Carousel-->
@@ -16,34 +16,21 @@ var_dump($banners);
 
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="img/slide-11-1920x600.jpg" class="d-block w-100" alt="Slider Image">
+        <?php
+        $_active = 'active';
+        foreach($banners as $banner):
+        ?>
+        <div class="carousel-item <?=$_active;?>">
+            <img src="<?=$webroot;?>uploads/<?=$banner['picture']?>" class="d-block w-100" alt="Slider Image">
             <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Some representative placeholder content for the first slide.</p>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="img/slide-22-1920x600.jpg" class="d-block w-100" alt="Slider Image">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="img/slide-33-1920x600.jpg" class="d-block w-100" alt="Slider Image">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="img/slide-44-1920x600.jpg" class="d-block w-100" alt="Slider Image">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
+        <?php
+        $_active = '';
+        endforeach;
+        ?>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -3,7 +3,6 @@ namespace Bitm;
 use PDO;
 class Banner{
 	public function __construct(){
-		session_start();
 		$this->conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
 		$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
@@ -12,6 +11,23 @@ class Banner{
 	{	
 		
 		$query = "SELECT * FROM `banner`";
+		$stmt = $this->conn->prepare($query);
+		$result = $stmt->execute();
+		$banners = $stmt->fetchAll();
+
+		return $banners;
+
+		echo "<pre>";
+		// print_r($products);
+		echo "</pre>";
+
+
+	}
+	public function getActiveBanners()
+	{	$starting_point = 0;
+		$end = 3;
+		
+		$query = "SELECT * FROM `banner` where is_active = 1 LIMIT $starting_point, $end";
 		$stmt = $this->conn->prepare($query);
 		$result = $stmt->execute();
 		$banners = $stmt->fetchAll();

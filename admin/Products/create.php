@@ -45,6 +45,15 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
                                 <input type="text" class="form-control" id="inputTitle" name="title" value="">
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="inputId" class="col-md-3 col-form-label">
+
+                                Price:
+                            </label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="inputPrice" name="price" value="">
+                            </div>
+                        </div>
                         <div class="mb-3 row form-check">
                             <div class="col-md-9">
                                 <input type="checkbox" class="form-check-input" id="inputIsActive" name="is_active" value="1">

@@ -5,7 +5,7 @@
 	class Product {
 
 		public function __construct(){
-			session_start();
+			
 			$this->conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
@@ -13,6 +13,17 @@
 		public function index() {
 			
 			$query = "SELECT * FROM `product`";
+			$stmt = $this->conn->prepare($query);
+			$result = $stmt->execute();
+			$products = $stmt->fetchAll();
+
+			return $products;
+		}
+
+		public function getActiveProducts() {
+			$starting_point = 0;
+			$end = 4;
+			$query = "SELECT * FROM `product` WHERE is_active = 1 LIMIT $starting_point,$end";
 			$stmt = $this->conn->prepare($query);
 			$result = $stmt->execute();
 			$products = $stmt->fetchAll();
@@ -34,6 +45,7 @@
 		public function store() {
 			$_picture=$this->upload();
 			$_title = $_POST['title'];
+			$_price = $_POST['price'];
 
 			if (array_key_exists('is_active', $_POST)) {
 			    $_is_active = $_POST['is_active'];
@@ -47,9 +59,10 @@
 			}
 
 			$_created_at = date('Y-m-d h:i:s', time());
-			$query = "INSERT INTO `product` (`title`,`created_at`,`picture`,`is_active`,`is_deleted`) VALUES (:title,:created_at,:picture,:is_active,:is_deleted);";
+			$query = "INSERT INTO `product` (`title`,`price`,`created_at`,`picture`,`is_active`,`is_deleted`) VALUES (:title,:price,:created_at,:picture,:is_active,:is_deleted);";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':title', $_title);
+			$stmt->bindParam(':price', $_price);
 			$stmt->bindParam(':picture', $_picture);
 			$stmt->bindParam(':is_active', $_is_active);
 			$stmt->bindParam(':is_deleted', $_is_deleted);
@@ -84,6 +97,7 @@
 			$_picture=$this->upload();
 			$_id = $_POST['id'];
 			$_title = $_POST['title'];
+			$_price = $_POST['price'];
 			if (array_key_exists('is_active', $_POST)) {
 			    $_is_active = $_POST['is_active'];
 			} else {
@@ -95,9 +109,10 @@
 			    $_is_deleted = 0;
 			}
 			$_modified_at = date('Y-m-d h:i:s', time());
-			$query = "UPDATE `product`  SET `title`=:title,`picture`=:picture ,`is_active`=:is_active,`modified_at`=:modified_at,`is_deleted`=:is_deleted WHERE `product`.`id` =:id;";
+			$query = "UPDATE `product`  SET `title`=:title,`price`=:price,`picture`=:picture ,`is_active`=:is_active,`modified_at`=:modified_at,`is_deleted`=:is_deleted WHERE `product`.`id` =:id;";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':title', $_title);
+			$stmt->bindParam(':price', $_price);
 			$stmt->bindParam(':id', $_id);
 			$stmt->bindParam(':is_active', $_is_active);
 			$stmt->bindParam(':is_deleted', $_is_deleted);
