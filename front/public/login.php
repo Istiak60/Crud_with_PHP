@@ -1,3 +1,8 @@
+<?php
+
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
+
+?>
 <!doctype html>
 <html lang="en">
 <?php

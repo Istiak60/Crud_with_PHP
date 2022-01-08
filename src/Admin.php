@@ -71,7 +71,7 @@ class Admin{
     }
 
     public function update() {
-        $_id = $_POST['id'];
+       
         $_name = $_POST['name'];
         $_email = $_POST['email'];
         $_phone = $_POST['phone'];

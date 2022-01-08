@@ -1,10 +1,11 @@
 <?php
+
 include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 
-
-
-
-
+use  Bitm\User;
+$_id = $_GET['id'];
+$_user = new User();
+$user = $_user->edit($_id);
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Create</title>
+    <title>Edit</title>
 </head>
 
 <body>
@@ -28,103 +29,102 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
                 <div class="col-md-5">
                 <div class="fs-4 text-danger">
                         <?php
-                        // session_start();
                         echo $_SESSION['message'];
                         $_SESSION['message'] = "";
                         ?>
                     </div>
-                    <h1 class="text-center mb-4"> Add New Banner </h1>
-
-                    <form method="post" action="store.php" enctype="multipart/form-data">
+                    <h1 class="text-center mb-4"> Edit User </h1>
+                    <form method="post" action="update.php" enctype="multipart/form-data">
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">
 
 
                             </label>
                             <div class="col-md-9">
-                                <input type="hidden" class="form-control" id="inputId" name="id" value="">
+                                <input type="hidden" class="form-control" id="inputId" name="id" value="<?= $user['id'] ?>">
                             </div>
                         </div>
-
+                        
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">
 
-                                Title:
+                                Full Name:
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputTitle" name="title" value="">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="inputId" class="col-md-3 col-form-label">
-
-                                Link:
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputLink" name="link" value="">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="inputId" class="col-md-3 col-form-label">
-
-                                Promotional Message:
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputPromotionalMessage" name="promotional_message" value="">
+                                <input type="text" class="form-control" id="inputFullName" name="full_name" value="<?= $user['full_name'] ?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">
 
-                                HTML BANNER:
+                                User Name:
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputHtmlBanner" name="html_banner" value="">
+                                <input type="text" class="form-control" id="inputUserName" name="user_name" value="<?= $user['user_name'] ?>">
                             </div>
                         </div>
-                        <div class="mb-3 row form-check">
-                            <div class="col-md-9">
-                                <input type="checkbox" class="form-check-input" id="inputIsActive" name="is_active" value="1">
-                            </div>
-                            <label for="inputIsActive" class="col-md-3  form-check-label">
 
-                                Is Active:
+                       
+
+                        <div class="mb-3 row">
+                            <label for="inputId" class="col-md-3 col-form-label">
+
+                                Email:
                             </label>
-
-                        </div>
-                        <div class="mb-3 row form-check">
                             <div class="col-md-9">
-                                <input type="checkbox" class="form-check-input" id="inputIsDraft" name="is_draft" value="1">
+                                <input type="text" class="form-control" id="inputEmail" name="email" value="<?= $user['email'] ?>">
                             </div>
-                            <label for="inputIsActive" class="col-md-3  form-check-label">
-
-                                Is Draft:
-                            </label>
-
                         </div>
 
 
                         <div class="mb-3 row">
-                            <label for="inputFile" class="col-md-3 col-form-label">
+                            <label for="inputId" class="col-md-3 col-form-label">
+                                Password:
+                            </label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" id="inputPassword" name="password" value="<?= $user['password'] ?>">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="inputId" class="col-md-3 col-form-label">
 
                                 Picture:
                             </label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control" id="inputFile" name="picture" value="">
+                                <input type="file" class="form-control" id="inputPic" name="picture" value="<?= $user['picture'] ?>">
+                            </div>
+                            <img src="<?= $webroot; ?>uploads/<?= $user['picture']; ?>">
+                            <input type="hidden" name="old_picture" value="<?= $user['picture'] ?>">
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="inputId" class="col-md-3 col-form-label">
+
+                                Phone Number:
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="inputPhoneNumber" name="phone_number" value="<?= $user['phone_number'] ?>">
                             </div>
                         </div>
 
+                   
+                        <div class="mb-3 row form-check">
+                            <div class="col-md-9">
+                                <input type="checkbox" class="form-check-input" id="inputIsDelete" name="is_delete" value="0">
+                            </div>
+                            <label for="inputIsDelete" class="col-md-3  form-check-label">
 
+                                Is Delete:
+                            </label>
 
+                        </div>
 
                         <div class="mb-3 row">
                             <div class="col-auto">
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
                             </div>
                         </div>
-
 
                     </form>
                 </div>

@@ -1,11 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +23,12 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
                 <div class="col-md-5">
                 <div class="fs-4 text-danger">
                         <?php
-                        // session_start();
+                        
                         echo $_SESSION['message'];
                         $_SESSION['message'] = "";
                         ?>
                     </div>
-                    <h1 class="text-center mb-4"> Add New Banner </h1>
+                    <h1 class="text-center mb-4"> Add New User </h1>
 
                     <form method="post" action="store.php" enctype="multipart/form-data">
                         <div class="mb-3 row">
@@ -49,64 +44,46 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">
 
-                                Title:
+                                Full Name:
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputTitle" name="title" value="">
+                                <input type="text" class="form-control" id="inputFullName" name="full_name" value="">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">
 
-                                Link:
+                                User Name:
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputLink" name="link" value="">
+                                <input type="text" class="form-control" id="inputUserName" name="user_name" value="">
                             </div>
                         </div>
+
+                       
 
                         <div class="mb-3 row">
                             <label for="inputId" class="col-md-3 col-form-label">
 
-                                Promotional Message:
+                                Email:
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputPromotionalMessage" name="promotional_message" value="">
+                                <input type="text" class="form-control" id="inputEmail" name="email" value="">
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputId" class="col-md-3 col-form-label">
-
-                                HTML BANNER:
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" id="inputHtmlBanner" name="html_banner" value="">
-                            </div>
-                        </div>
-                        <div class="mb-3 row form-check">
-                            <div class="col-md-9">
-                                <input type="checkbox" class="form-check-input" id="inputIsActive" name="is_active" value="1">
-                            </div>
-                            <label for="inputIsActive" class="col-md-3  form-check-label">
-
-                                Is Active:
-                            </label>
-
-                        </div>
-                        <div class="mb-3 row form-check">
-                            <div class="col-md-9">
-                                <input type="checkbox" class="form-check-input" id="inputIsDraft" name="is_draft" value="1">
-                            </div>
-                            <label for="inputIsActive" class="col-md-3  form-check-label">
-
-                                Is Draft:
-                            </label>
-
                         </div>
 
 
                         <div class="mb-3 row">
+                            <label for="inputId" class="col-md-3 col-form-label">
+                                Password:
+                            </label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" id="inputPassword" name="password" value="">
+                            </div>
+                        </div>
+
+                        <!-- <div class="mb-3 row">
                             <label for="inputFile" class="col-md-3 col-form-label">
 
                                 Picture:
@@ -114,7 +91,32 @@ include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
                             <div class="col-md-9">
                                 <input type="file" class="form-control" id="inputFile" name="picture" value="">
                             </div>
+                        </div> -->
+
+                        <div class="mb-3 row">
+                            <label for="inputId" class="col-md-3 col-form-label">
+
+                                Phone Number:
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="inputPhoneNumber" name="phone_number" value="">
+                            </div>
                         </div>
+
+                   
+                        <div class="mb-3 row form-check">
+                            <div class="col-md-9">
+                                <input type="checkbox" class="form-check-input" id="inputIsDelete" name="is_delete" value="0">
+                            </div>
+                            <label for="inputIsActive" class="col-md-3  form-check-label">
+
+                                Is Delete:
+                            </label>
+
+                        </div>
+
+
+                
 
 
 

@@ -1,6 +1,6 @@
 <?php
 		include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
-		use  Bitm\Banner;
+		use  Bitm\User;
 		$data = $_POST;
 
 		function is_empty($value) {
@@ -12,15 +12,14 @@
 			}
 		}
 
-		if(is_empty($data['title'])) {
-			session_start();
-			$_SESSION['message'] = "Title can't be empty.please enter a title";
+		if(is_empty($data['user_name'])) {
+			$_SESSION['message'] = "User Name can't be empty.please enter a title";
 		
 			header('location:create.php');
 		}
 		else {
-			$_banner = new Banner();
-			$banner = $_banner ->store($data);
+			$_user = new User();
+			$user = $_user->store($data);
 		}
 
 		

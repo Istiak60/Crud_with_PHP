@@ -61,8 +61,8 @@ class Banner{
 			$_picture=$this->upload();
 			$_title = $data['title'];
 			$_link = $data['link'];
-			$_html_banner = $_data['html_banner'];
-			$_promotional_message = $_data['promotional_message'];
+			$_html_banner = $data['html_banner'];
+			$_promotional_message = $data['promotional_message'];
 			if (array_key_exists('is_active', $data)) {
 			    $_is_active = $data['is_active'];
 			} else {

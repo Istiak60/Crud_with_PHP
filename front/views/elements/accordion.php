@@ -89,7 +89,7 @@
             <div class="col-md-9">
                 <!--Markup for Carousel-->
               
-				<?php include_once('../views/elements/carousel.php'); ?>
+				
 			</div>
         </div>
     </div>
