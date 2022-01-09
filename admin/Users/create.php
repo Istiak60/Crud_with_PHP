@@ -1,5 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/authenticator.php");
 
 ?>
 <!DOCTYPE html>
