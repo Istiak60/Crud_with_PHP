@@ -66,7 +66,7 @@ include_once('../views/elements/navbar.php');
                             <p class="fs-2">&dollar;100.00</p>
                             </div>
                             <div class="col-md-6 ">
-                            <button type="button" class="btn btn-success">In Stock</button>
+                            <button type="button" class="btn btn-danger">Add to Cart</button>
                             </div>
                         </div>
                     

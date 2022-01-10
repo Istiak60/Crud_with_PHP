@@ -1,29 +1,11 @@
 <?php
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
 
+use  Bitm\Cart;
 $_id = $_GET['id'];
-$webroot = "http://localhost/CRUD/admin/";
+$_cart = new  Cart();
+$cart = $_cart->edit($_id);
 
-//Connect to database
-$conn = new PDO(
-    "mysql:host=localhost;dbname=ecommerce",
-    'root',
-    ''
-);
-//set the PDO error mode to exception
-$conn->setAttribute(
-    PDO::ATTR_ERRMODE,
-    PDO::ERRMODE_EXCEPTION
-);
-
-$query = "SELECT * FROM `cart` WHERE id = :id";
-
-$stmt = $conn->prepare($query);
-
-$stmt->bindParam(':id', $_id);
-
-$result = $stmt->execute();
-
-$cart = $stmt->fetch();
 
 /*echo "<pre>";
 print_r($product);

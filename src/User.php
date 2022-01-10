@@ -124,13 +124,8 @@ class User{
 		}
 			
 			$_modified_at = date('Y-m-d h:i:s', time());
-			
-		
-			// $query = "UPDATE `users`  SET `full_name`= , `user_name`= :user_name, `password`= , `email`=, `picture`= ,`is_delete`= , `phone_number`= ,`modified_at`= :modified_at WHERE ";
 			$query = "UPDATE `users` SET `full_name`= :full_name,`user_name` = :user_name,`email` = :email,`password`= :password,`picture`= :picture,`phone_number`= :phone_number,`modified_at` = :modified_at,`is_delete` = :is_delete WHERE `users`.`id` = :id;";
-			
-			
-			
+
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':id', $_id);
 			$stmt->bindParam(':full_name', $_full_name);
@@ -189,49 +184,22 @@ class User{
 		return $_picture;
 	}
 
-	// public function login($data)
-	// {	
-	// 	$email = $data['email'];
-	// 	$password = $data['password'];
-		 
-	// 	$query = "SELECT * FROM `users` WHERE email = :email";
-	// 	$stmt = $this->conn->prepare($query);
-	// 	$stmt->bindParam('email', $email);
-	// 	if($result = $stmt->execute()){
-	// 		$user = $stmt->fetch();
-	// 		if(($user->password)==$password){
-	// 			$_SESSION['id'] = $user->id;
-	// 			$_SESSION['email'] = $user->email;
-
-	// 			header("location:../../front/public/index.php");
-	// 		}
-	// 	}
-	// 	return $user;
-
-	// 	$query="SELECT FROM `users` WHERE `id`=:id";
-	// 	$stmt =$this->conn->prepare($query);
-	// 	$stmt->bindParam(':id',$id);
-	// 	// $stmt->bindParam(':email',$email);
-	// 	// $stmt->bindParam(':password',$password);
-	// 	$result =$stmt->execute();
-	// 	var_dump($result);
-	// 	header("location:index.php");
-	// 	return $result;
-
-
-
-	// }
-	public function login($email, $password){
-		$query = "SELECT COUNT(*) AS total FROM `users` WHERE email LIKE :email AND password LIKE :password;";
+	public function login($email, $password)	{
+		$query = "SELECT * FROM `users` WHERE email LIKE :email AND password LIKE :password;";
 
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(':email', $email);
 		$stmt->bindParam(':password', $password);
 		$result = $stmt->execute();
 		$totalfound = $stmt->fetch();
-		if($totalfound['total'] > 0){
+		if(count($totalfound) > 0){
 			$_SESSION['is_authenticated']=true;
-			header("location:http://localhost/CRUD/front/public/index.php");
+			$_SESSION['user_id']=$totalfound['id'];
+
+			
+			header("Location: http://localhost/CRUD/front/public/dashboard.php");
+			
+			
 		}else{
 			$_SESSION['is_authenticated']=false;
 			header("location:http://localhost/CRUD/404.php");

@@ -22,12 +22,12 @@ $carts = $_cart->index();
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <div class="fs-3 text-success">
+                    <!-- <div class="fs-3 text-success">
                         <?php
                         echo $_SESSION['message'];
                         $_SESSION['message'] = "";
                         ?>
-                    </div>
+                    </div> -->
                     <h1 class="text-center mb-4">Cart</h1>
                     <ul class="nav justify-content-center fs-3">
                         <li class="nav-item">

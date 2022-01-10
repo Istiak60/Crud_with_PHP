@@ -1,10 +1,11 @@
 <?php
-$approot = $_SERVER['DOCUMENT_ROOT']."/CRUD/";
-include_once($approot."vendor/autoload.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/CRUD/config.php");
+
 use  Bitm\Cart;
+$id = $_GET['id'];
 $_cart = new Cart();
-$cart= $_cart->show();
-$webroot = "http://localhost/CRUD/admin/";
+$cart = $_cart->show($id);
+
 ?>
 
 
